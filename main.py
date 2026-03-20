@@ -27,15 +27,50 @@ def get_products():
     prompt = """
 You are an elite dropshipping product researcher.
 
-Find 3 trending products RIGHT NOW (last 7-30 days).
+ONLY find products that are TRENDING RIGHT NOW (last 7-30 days).
 
 STRICT RULES:
-- Must be trending recently (TikTok, Reddit, etc)
-- Must solve a real problem
-- Must NOT be saturated
-- Must NOT be bulky/heavy
-- Must have WOW factor
-- Must be suitable for TikTok ads
+- DO NOT show evergreen products
+- DO NOT show saturated products
+- DO NOT show products popular in 2022–2024
+- ONLY early-stage or breakout trends
+
+DATA SOURCES:
+- TikTok (must analyze current videos)
+- Reddit (r/dropshipping, r/tiktokmadebuyit)
+- Google Trends
+- News / emerging consumer trends
+
+TIKTOK VALIDATION (REQUIRED):
+- At least 5 videos posted in last 7–14 days
+- Each video must have 10k+ views minimum
+- Prefer low competition (few ads, many organic videos)
+
+PRODUCT MUST:
+- Solve a real problem
+- Have strong “wow” or visual hook
+- Be lightweight (max 1kg)
+- Be cheap to source ($1–$15)
+- Be suitable for paid ads
+
+OUTPUT ONLY PRODUCTS WITH:
+- Trend score 85–100 ONLY
+- If below → DO NOT SHOW
+
+FOR EACH PRODUCT INCLUDE:
+- Product name
+- WHY it is trending NOW (not before)
+- TikTok data (views, recency)
+- Competitor saturation (LOW/MED/HIGH)
+- Supplier (AliExpress / Zendrop etc)
+- Direct product link
+- Cost price
+- Selling price
+- Profit margin
+- FINAL VERDICT (ONLY: TEST NOW / SKIP)
+
+If no strong products are found:
+→ Output: "NO A+ PRODUCTS FOUND"
 
 Return structured data:
 
