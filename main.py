@@ -8,7 +8,7 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
-SLEEP_SECONDS = 60  # kjører hvert minutt (perfekt for testing)
+SLEEP_SECONDS = 1800  # 30 minutter mellom hver kjøring
 
 sent_ids = set()
 
@@ -67,7 +67,6 @@ def main():
 
             products = get_products()
 
-            # ENKEL FILTER (slipper at alt blir filtrert bort)
             if "Trend Score" in products:
                 send_telegram(f"🔥 PRODUCT FOUND:\n\n{products}")
                 print("✅ Sendt til Telegram")
@@ -79,6 +78,7 @@ def main():
             print(err)
             send_telegram(err)
 
+        print("😴 Sover i 30 minutter...")
         time.sleep(SLEEP_SECONDS)
 
 
