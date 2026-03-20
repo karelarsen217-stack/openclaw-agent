@@ -1,7 +1,8 @@
 import time
+import os
 from openai import OpenAI
 
-client = OpenAI(api_key="YOUR_API_KEY")
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 while True:
     response = client.chat.completions.create(
@@ -9,12 +10,14 @@ while True:
         messages=[
             {
                 "role": "user",
-                "content": """Find 3 trending products in the last 7-30 days.
+                "content": """Find 3 trending products in the last 7–30 days.
+
 Include:
 - Product name
 - Why trending
 - Target audience
-- Ad angle"""
+- Ad angle
+"""
             }
         ]
     )
