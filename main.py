@@ -28,4 +28,4 @@ Include:
     except Exception as e:
         print("Error:", e)
 
-    time.sleep(3600)
+    time.sleep(10)
