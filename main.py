@@ -101,7 +101,27 @@ def main():
             print("🔎 Scanner etter produkter...")
 
             products = get_products()
+filtered = []
+now = time.time()
 
+for item in products:
+    created = item.get("createTime", 0)
+    days_old = (now - created) / 86400
+
+    shares = item.get("stats", {}).get("shareCount", 0)
+    comments = item.get("stats", {}).get("commentCount", 0)
+    views = item.get("stats", {}).get("playCount", 0)
+
+    caption = item.get("text", "").lower()
+
+    banned = ["diy", "book", "books", "list", "hack"]
+    if any(word in caption for word in banned):
+        continue
+
+    if days_old <= 30 and shares > 1000 and comments > 100 and views > 50000:
+        filtered.append(item)
+
+products = filtered
             if "Trend Score" in products:
                 send_telegram(f"🔥 PRODUCT FOUND:\n\n{products}")
                 print("✅ Sendt til Telegram")
